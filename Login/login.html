@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>로그인창</title>
+        
+        <link rel="stylesheet" href="login.css">
+        
+
+    </head>
+    <body>
+           
+            <script src="http://code.jquery.com/jquery-latest.js"> </script>
+            <script>
+            
+           
+            $(document).ready(function(){
+                
+                $(window).resize(function(){
+                    var windowWidth = $(window).width();
+                   // var windowHeight = $(window).height();
+                    var windowW = $('.loginWrap').width();
+                    //var windowH = $('.loginWrap').height();
+                    var chW=(windowW/windowWidth)*100+'%';
+                    //var chH=(windowH/windowHeight)*100+'%';
+                    if(windowWidth<800){
+                        $('.loginWrap').css('width',chW);
+                        $('.faqdiv').css('width',chW);
+                    }
+                    else{
+                        $('.loginWrap').css('width','600px');
+                        $('.faqdiv').css('width','600px');
+                    }
+                    //$('.loginWrap').css('width',chW);
+                    //$('.loginWrap').css('height',chH);
+                   
+                });
+
+               
+
+                
+
+                
+                
+                $("#btn").on("click",function(){
+                    var id = $("#userId").val();
+                    var pw = $("#userPw").val();
+
+                    if(id ==""){
+                        alert("아이디를 입력하세요");
+                    }else if(pw ==""){
+                        alert("비밀번호를 입력해주세요.");
+                    }
+                    
+                    if(id != "" && pw != ""){
+                        $('.loginWrap').css('display','none');
+                        $('.faqdiv').css('display','block');
+                        
+                    }
+
+
+                });
+
+                $("#backbt").on("click",function(){
+
+                    $('.faqdiv').css('display','none');
+                  
+                    $('.loginWrap').css('display','block');
+                    $('.Idtxt').val('');
+                    $('.Pwtxt').val('');
+
+                });
+
+                var Num=3;
+
+                $("#accodiv>li").each(function(e){
+                    $(this).find(".pbox").click(function(){
+                        if(e != Num){
+                            $('#accodiv>li').eq(Num).removeClass("on");
+                            $('#accodiv>li').eq(Num).find(".pbox").next().stop(true,true).slideUp(100);
+                            Num=e;
+                            $(this).parent().addClass("on");
+                            $(this).next().stop(true,true).slideDown(100);
+                        }
+                        else{
+                            $('#accodiv>li').eq(Num).removeClass("on");
+                            $('#accodiv>li').eq(Num).find(".pbox").next().stop(true,true).slideUp(100);
+                            
+
+                            Num=-1;
+                        }
+                    })
+                })
+
+
+            });
+        </script>
+        <form id="content">
+            <div class="loginWrap">
+                <h2>로그인 화면</h2>
+                <div class="loginIcon">
+                    <div class="IdDiv">
+                        
+                        <label for="userId">아이디</label>
+                        <input type="text" name="CUST_ID" placeholder="ID" value title="아이디 입력" class="Idtxt" id="userId" maxlength="30" autocomplete="off">
+
+                    </div>
+                    <div class="passwordDiv">
+                        
+                        <label for="userPw">비밀번호</label>
+                        <input type="password" placeholder="Pass Word" name="CUST_PW" value title="비밀번호 입력" class="Pwtxt" id="userPw" maxlength="30" autocomplete="off">
+
+                    </div>
+                    <div class="btnDiv">
+                        <button id="btn" type="button" >로그인</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        
+
+        
+            <div class="faqdiv" style="display: none;">
+                <ul id="accodiv">
+                    <li>
+                        <div class="pbox">
+                            <p class="btnTxt">테이블 만들기</p>
+
+                        </div>
+                        <div class="answer" style="display: none;">
+                            <p>
+                                <span style="font-size: 15pt;">
+                                    <b>제이쿼리로 표 행추가/삭제/셀분할</b>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pbox">
+                            <p class="btnTxt">FAQ 만들기</p>
+
+                        </div>
+                        <div class="answer" style="display: none;">
+                            <p>
+                                <span style="font-size: 15pt;">
+                                    <b>한국의류시험연구원 FAQ 제이쿼리로 구현하기</b>
+                                </span>
+                            </p>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="pbox">
+                            <p class="btnTxt">로그인만들기</p>
+
+                        </div>
+                        <div class="answer" style="display: none;">
+                            <p>
+                                <span style="font-size: 15pt;">
+                                    <b>to be continue...</b>
+                                </span>
+                            </p>
+                        </div>
+
+                    </li>
+
+                </ul>
+                <div class="backbtDiv">
+                    <button type="button" id="backbt">로그아웃</button>
+
+                </div>
+
+
+
+            </div>
+        </form>
+
+
+
+
+    </body>
+</html>
